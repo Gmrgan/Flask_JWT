@@ -41,6 +41,8 @@ def admin():
         return jsonify({"msg": "Mauvais utilisateur ou mot de passe"}), 401
 
     access_token = create_access_token(identity=username, expires_delta=timedelta(hours=1))
+    response = make_response(jsonify({"access_token": access_token}))
+    response.set_cookie("access_token", access_token, httponly=True, max_age=3600)
     return jsonify(access_token=access_token)
 
 # Route protégée par un jeton valide
