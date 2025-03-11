@@ -32,7 +32,7 @@ def login():
     return jsonify(access_token=access_token)
 
 @app.route("/admin", methods=["POST"])
-def login():
+def admin():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     if username != "admin" or password != "admin":
