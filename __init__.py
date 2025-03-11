@@ -23,6 +23,7 @@ def hello_world():
 # La fonction create_access_token() est utilisée pour générer un jeton JWT.
 @app.route("/login", methods=["POST"])
 def login():
+    return render_template('formulaire.html')
     username = request.json.get("username", None)
     password = request.json.get("password", None)
     if username != "test" or password != "test":
