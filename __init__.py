@@ -3,7 +3,7 @@ from flask import render_template
 from flask import json
 from flask import jsonify
 from flask import request
-
+from datetime import timedelta  # Import pour gérer la durée de vie du token
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
@@ -28,7 +28,7 @@ def login():
     if username != "test" or password != "test":
         return jsonify({"msg": "Mauvais utilisateur ou mot de passe"}), 401
 
-    access_token = create_access_token(identity=username)
+    access_token = create_access_token(identity=username, expires_delta=timedelta(hours=1))
     return jsonify(access_token=access_token)
 
 
